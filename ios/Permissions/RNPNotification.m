@@ -33,7 +33,8 @@ static NSString* RNPDidAskForNotification = @"RNPDidAskForNotification";
 {
     NSString *status = [self.class getStatus];
 
-    if (status == RNPStatusUndetermined) {
+    //if (status == RNPStatusUndetermined) {
+    // Always request permissions if using 'request'
         self.completionHandler = completionHandler;
 
         [[NSNotificationCenter defaultCenter] addObserver:self
@@ -47,9 +48,9 @@ static NSString* RNPDidAskForNotification = @"RNPDidAskForNotification";
 
         [[NSUserDefaults standardUserDefaults] setBool:YES forKey:RNPDidAskForNotification];
         [[NSUserDefaults standardUserDefaults] synchronize];
-    } else {
-        completionHandler(status);
-    }
+//    } else {
+//        completionHandler(status);
+//    }
 }
 
 - (void)applicationDidBecomeActive
